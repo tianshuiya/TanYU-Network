@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>卡密兑换</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <button @click="start">开始</button>
+    </div>
+    <div class="overlay" :style="{ display: overlayDisplay, animation: overlayAnimation }">
+      <div class="card-modal" :style="{ display: cardModalDisplay, animation: cardModalAnimation }" v-if="cardModalId === 0">
+          <button class="close-button" @click="closeModal">
+          <span class="close-span"><strong>╳</strong></span>
+        </button>
+        <h3>第一步</h3>
+        <input type="text" placeholder="请输入卡密" v-model="cardInputValue">
+        <el-button id="next-btn" @click="handleNext">下一步</el-button>
+      </div>
+           <div class="card-modal" :style="{ display: cardModalDisplay, animation: cardModalAnimation }" v-if="cardModalId === 1">
+              <h3>激活成功</h3>
+              <h5>以下是用户，请注意保管</h5>
+              <p>{{ data_data }}</p>
+              <div v-if="closeBtnId > 0">
+              <el-button disabled id="close-Btn" class="close-Btn" @click="closeModal">{{ close_button }}</el-button>
+              </div>
+              <div v-else>
+                     <el-button class="close-button" @click="closeModal">
+                <span class="close-span"><strong>╳</strong></span>
+              </el-button>
+              <el-button id="close-Btn" class="close-Btn" @click="closeModal">{{ close_button }}</el-button>
+              </div>
+    </div>
+    </div>
+    <div class="alert hide"></div>
+  </div>
+  
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="/js/index.js"></script>
+</body>
+</html>
+
